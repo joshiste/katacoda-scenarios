@@ -93,7 +93,7 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: 8080
-            initialDelaySeconds: 90
+            initialDelaySeconds: 30
 ---
 apiVersion: v1
 kind: Service
@@ -120,7 +120,7 @@ metadata:
   name: fashion-bestseller
 spec:
   replicas: 1
-  minReadySeconds: 30
+  minReadySeconds: 5
   selector:
     matchLabels:
       run: fashion-bestseller-exposed
@@ -160,12 +160,12 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: 8082
-            initialDelaySeconds: 90
+            initialDelaySeconds: 30
           readinessProbe:
             httpGet:
               path: /actuator/health/liveness
               port: 8082
-            initialDelaySeconds: 90
+            initialDelaySeconds: 30
 ---
 apiVersion: v1
 kind: Service
@@ -260,7 +260,7 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: 8083
-            initialDelaySeconds: 90
+            initialDelaySeconds: 30
 ---
 apiVersion: v1
 kind: Service
@@ -278,7 +278,7 @@ spec:
     run: hot-deals-exposed
   type: NodePort
 ---
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: gateway-ingress
@@ -290,7 +290,5 @@ spec:
           - pathType: Prefix
             path: "/"
             backend:
-              service:
-                name: gateway
-                port:
-                  number: 80
+              serviceName: gateway
+              servicePort: 80

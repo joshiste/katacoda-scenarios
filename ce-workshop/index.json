@@ -1,0 +1,50 @@
+{
+  "title": "Chaos Engineering Workshop",
+  "description": "",
+  "difficulty": "Intermediate",
+  "time": "60 minutes",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "code": "intro.sh"
+    },
+    "steps": [
+      {
+        "title": "Basic Demo Setup",
+        "text": "step1.md"
+      },
+      {
+        "title": "Deploying the steadybit agent",
+        "text": "step2.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "deploy-demo.sh",
+          "target": "/root",
+          "chmod": "+x"
+        },
+        {
+          "file": "deploy-ingress.sh",
+          "target": "/root",
+          "chmod": "+x"
+        },
+        {
+          "file": "manifests-demo.yml",
+          "target": "/root"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "hideintro": true,
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "kubernetes-cluster-running:1.18"
+  }
+}
